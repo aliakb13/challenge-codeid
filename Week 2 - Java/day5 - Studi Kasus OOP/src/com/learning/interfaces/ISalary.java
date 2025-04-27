@@ -3,6 +3,6 @@ package com.learning.interfaces;
 
 // use this if necessary
 public interface ISalary {
-    void calcTax();
+    double calcTax();
     void calcSalary();
 }

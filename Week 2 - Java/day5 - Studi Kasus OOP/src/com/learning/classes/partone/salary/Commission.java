@@ -1,4 +1,4 @@
-package com.learning.classes.salary;
+package com.learning.classes.partone.salary;
 
 import java.time.LocalDate;
 

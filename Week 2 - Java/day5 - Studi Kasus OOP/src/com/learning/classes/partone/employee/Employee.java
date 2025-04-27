@@ -1,4 +1,4 @@
-package com.learning.classes.employee;
+package com.learning.classes.partone.employee;
 
 import com.learning.Role;
 
