@@ -23,18 +23,23 @@ public class QA extends EmployeeTwo implements ISalary {
                 ", fullName='" + super.getFullName() +
                 ", role=" + super.getRole() +
                 ", salary=" + super.getSalary() +
-                ", totalSalary=" + super.getTotalSalary() +
+                ", totalSalary=" + getTotalSalary() +
                 ", tax= " + calcTax() +
                 '}';
     }
 
     @Override
     public double calcTax() {
-        return super.getTotalSalary() * 0.5;
+        return super.getTotalSalary() * 0.05;
     }
 
     @Override
     public void calcSalary() {
         super.setTotalSalary(super.getTotalSalary() + overtime.getMakan());
+    }
+
+    @Override
+    public double getTotalSalary() {
+        return super.getTotalSalary() - calcTax();
     }
 }
