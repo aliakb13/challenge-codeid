@@ -1,4 +1,4 @@
-package com.learning.classes.employee;
+package com.learning.classes.partone.employee;
 
 import com.learning.Role;
 
@@ -40,11 +40,11 @@ abstract public class Employee {
     }
 
     public double getTotalSalary() {
-        return totalSalary;
+        return totalSalary - calcTax();
     }
 
     public double calcTax() {
-        return this.getTotalSalary() * 0.5;
+        return totalSalary * 0.05;
     }
 
     public abstract void calculateSalary();

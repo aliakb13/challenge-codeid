@@ -1,8 +1,8 @@
-package com.learning.classes.employee;
+package com.learning.classes.partone.employee;
 
 import com.learning.Role;
-import com.learning.classes.salary.Overtime;
-import com.learning.classes.salary.Transport;
+import com.learning.classes.partone.salary.Overtime;
+import com.learning.classes.partone.salary.Transport;
 
 public class Programmer extends Employee {
     private Transport transport;
