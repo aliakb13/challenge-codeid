@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regions</title>
+  </head>
+  <body>
+    <h1>This is for OE.region</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <td>Region ID:</td>
+          <td>Region Description:</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="reg : ${regions}">
+          <td th:text="${reg.regionId}"></td>
+          <td th:text="${reg.regionDescription}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
