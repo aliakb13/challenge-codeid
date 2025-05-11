@@ -22,6 +22,16 @@ public class Shipper {
     private String companyName;
     @Column(name = "phone")
     private String phone;
+
+    public Shipper() {
+    }
+    
+    public Shipper(Long shipperId, String companyName, String phone) {
+        this.shipperId = shipperId;
+        this.companyName = companyName;
+        this.phone = phone;
+    }
+
     public Long getShipperId() {
         return shipperId;
     }
@@ -40,13 +50,7 @@ public class Shipper {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public Shipper() {
-    }
-    public Shipper(Long shipperId, String companyName, String phone) {
-        this.shipperId = shipperId;
-        this.companyName = companyName;
-        this.phone = phone;
-    }
+    
     
     
 }

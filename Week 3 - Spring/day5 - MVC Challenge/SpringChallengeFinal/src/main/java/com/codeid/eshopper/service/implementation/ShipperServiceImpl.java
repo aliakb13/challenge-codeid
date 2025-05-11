@@ -20,8 +20,6 @@ public class ShipperServiceImpl implements ShipperService{
     }
 
 
-
-
     @Override
     public List<Shipper> findAllShipper() {
         // TODO Auto-generated method stub
