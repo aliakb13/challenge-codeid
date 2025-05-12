@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.SpringRestChallenge.model.dto.SupplierDto;
 import com.example.SpringRestChallenge.model.entities.Suppliers;
+import com.example.SpringRestChallenge.model.mapper.MapperObj;
 import com.example.SpringRestChallenge.repository.SupplierRepository;
 import com.example.SpringRestChallenge.service.SupplierService;
 
@@ -21,15 +22,11 @@ public class SupplierServiceImpl implements SupplierService{
 
   private final SupplierRepository supplierRepository;
 
-  public static SupplierDto maSupplierDto(Suppliers entity) {
-    return new SupplierDto(entity.getId(), entity.getCompanyName());
-  }
-
   @Override
   public List<SupplierDto> getAllData() {
     return supplierRepository.findAll()
             .stream()
-            .map(SupplierServiceImpl::maSupplierDto)
+            .map(MapperObj::mapToSupplierDto)
             .collect(Collectors.toList());
   }
 
@@ -37,7 +34,7 @@ public class SupplierServiceImpl implements SupplierService{
   public SupplierDto addData(SupplierDto entity) {
     supplierRepository.findById(entity.getSupplierId()).ifPresent(c -> { throw new DataIntegrityViolationException("Id with " + entity.getSupplierId() + " already in used!"); });
 
-    return maSupplierDto(supplierRepository.save(
+    return MapperObj.mapToSupplierDto(supplierRepository.save(
       new Suppliers(
         entity.getSupplierId(), 
         entity.getCompanyName()
@@ -47,7 +44,7 @@ public class SupplierServiceImpl implements SupplierService{
 
   @Override
   public SupplierDto findDataById(Long id) {
-    return supplierRepository.findById(id).map(SupplierServiceImpl::maSupplierDto).orElseThrow(() -> new EntityNotFoundException("Supplier with id " + id + " was not found!"));
+    return supplierRepository.findById(id).map(MapperObj::mapToSupplierDto).orElseThrow(() -> new EntityNotFoundException("Supplier with id " + id + " was not found!"));
   }
 
   @Override
@@ -57,7 +54,7 @@ public class SupplierServiceImpl implements SupplierService{
     supplier.setCompanyName(entity.getCompanyName());
     supplier.setModifiedDate(Instant.now());
 
-    return maSupplierDto(supplierRepository.save(supplier));
+    return MapperObj.mapToSupplierDto(supplierRepository.save(supplier));
   }
 
   @Override

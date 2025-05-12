@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.SpringRestChallenge.model.dto.CategoriesDto;
 import com.example.SpringRestChallenge.model.entities.Categories;
+import com.example.SpringRestChallenge.model.mapper.MapperObj;
 import com.example.SpringRestChallenge.repository.CategoriesRepository;
 import com.example.SpringRestChallenge.service.CategoriesService;
 import jakarta.persistence.EntityNotFoundException;
@@ -20,21 +21,17 @@ public class CategoriesServiceImpl implements CategoriesService {
 
   private final CategoriesRepository categoriesRepository;
 
-  public static CategoriesDto mapToDto(Categories entity) {
-    return new CategoriesDto(entity.getId(), entity.getName(), entity.getDescription());
-  }
-
   @Override
   public List<CategoriesDto> getAllData() {
     return categoriesRepository.findAll()
             .stream()
-            .map(CategoriesServiceImpl::mapToDto)
+            .map(MapperObj::mapToCategoriesDto)
             .collect(Collectors.toList());
   }
 
   @Override
   public CategoriesDto findDataById(Long id) {
-    return categoriesRepository.findById(id).map(CategoriesServiceImpl::mapToDto)
+    return categoriesRepository.findById(id).map(MapperObj::mapToCategoriesDto)
             .orElseThrow(() -> new EntityNotFoundException("Category with id " + id + " is not found!"));
   }
 
@@ -50,7 +47,7 @@ public class CategoriesServiceImpl implements CategoriesService {
 
       categoriesRepository.findById(entity.getCategoryId()).ifPresent(c -> { throw new DataIntegrityViolationException("Id with " + entity.getCategoryId() + " already in used!"); });
 
-      return mapToDto(categoriesRepository.save(new Categories(
+      return MapperObj.mapToCategoriesDto(categoriesRepository.save(new Categories(
         entity.getCategoryId(),
         entity.getCategoryName(),
         entity.getCategoryDescription()
@@ -66,7 +63,7 @@ public class CategoriesServiceImpl implements CategoriesService {
     category.setModifiedDate(Instant.now());
 
     categoriesRepository.save(category);
-    return mapToDto(categoriesRepository.save(category));
+    return MapperObj.mapToCategoriesDto(categoriesRepository.save(category));
   }
 
   @Override
