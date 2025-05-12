@@ -28,7 +28,7 @@ public class CategoriesController extends BaseController<CategoriesDto, Long> {
 
   @Override
   public ResponseEntity<?> getAllData() {
-    return ResponseEntity.status(201).body(new BaseResponse<List<CategoriesDto>>(1220, "successfully get all data!", service.getAllData()));
+    return ResponseEntity.status(200).body(new BaseResponse<List<CategoriesDto>>(1220, "successfully get all data!", service.getAllData()));
   }
 
   @Override
