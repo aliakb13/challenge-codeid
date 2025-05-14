@@ -14,7 +14,6 @@ import com.example.SpringRestChallenge.model.mapper.MapperObj;
 import com.example.SpringRestChallenge.repository.CategoriesRepository;
 import com.example.SpringRestChallenge.repository.ProductsRepository;
 import com.example.SpringRestChallenge.repository.SupplierRepository;
-import com.example.SpringRestChallenge.service.ProductService;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +44,7 @@ public class ProductsServiceImpl{
                                                               .unitOrder(100L)
                                                               .reorderLvl(50L)
                                                               .discontinued(new Random().nextInt(0,1))
-                                                              .photo(null)
+                                                              .photo(entity.getPhoto())
                                                               .build()));
   }
 

@@ -3,6 +3,7 @@ package com.example.SpringRestChallenge.model.mapper;
 import com.example.SpringRestChallenge.model.dto.CategoriesDto;
 import com.example.SpringRestChallenge.model.dto.ShippersDto;
 import com.example.SpringRestChallenge.model.dto.SupplierDto;
+import com.example.SpringRestChallenge.model.dto.request.ProductsDtoReq;
 import com.example.SpringRestChallenge.model.dto.response.ProductsDtoRes;
 import com.example.SpringRestChallenge.model.entities.Categories;
 import com.example.SpringRestChallenge.model.entities.Products;
