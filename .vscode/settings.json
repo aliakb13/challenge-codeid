@@ -1,3 +1,7 @@
 {
-  "java.compile.nullAnalysis.mode": "automatic"
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.project.sourcePaths": [
+    "Week 2 - Java/day5 - Studi Kasus OOP/src",
+    "Week 4 - Spring REST/day5 - Spring Rest Multipart/SpringRestChallenge/src/main/java/com/example/SpringRestChallenge"
+  ]
 }
