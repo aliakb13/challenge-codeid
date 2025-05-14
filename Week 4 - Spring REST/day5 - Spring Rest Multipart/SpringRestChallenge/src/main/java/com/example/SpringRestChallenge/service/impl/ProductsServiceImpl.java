@@ -1,5 +1,6 @@
 package com.example.SpringRestChallenge.service.impl;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -49,18 +50,31 @@ public class ProductsServiceImpl{
   }
 
   public ProductsDtoRes findDataById(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'findDataById'");
+    return productsRepository.findById(id).map(MapperObj::mapToProductsDto).orElseThrow(() -> new EntityNotFoundException("supplier with id " + id + " was not found!"));
   }
 
-  public ProductsDtoRes updateData(ProductsDtoRes entity, Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'updateData'");
+  public ProductsDtoRes updateData(ProductsDtoReq entity, Long id) {
+    var product = productsRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("products with id " + id + " was not found!"));
+
+    var supplier = supplierRepository.findById(entity.getSupplierId()).orElseThrow(() -> new EntityNotFoundException("supplier with id " + entity.getSupplierId() + " was not found!"));
+    var category = categoriesRepository.findById(entity.getCategoryId()).orElseThrow(() -> new EntityNotFoundException("category with id " + entity.getCategoryId() + " was not found!"));
+
+    product.setName(entity.getProductName());
+    product.setSupplier(supplier);
+    product.setCategory(category);
+    product.setUnitPrice(entity.getUnitPrice());
+    product.setPhoto(entity.getPhoto());
+    product.setModifiedDate(Instant.now());
+    
+    return MapperObj.mapToProductsDto(productsRepository.save(product));
   }
 
   public Long delete(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    var product = productsRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("products with id " + id + " was not found!"));
+
+    productsRepository.delete(product);
+
+    return id;
   }
   
 }
