@@ -1,6 +1,10 @@
 package com.example.SpringRestChallenge.model.dto.response;
 
 import java.time.Instant;
+import java.util.List;
+
+import com.example.SpringRestChallenge.model.dto.request.InsertImagesReq;
+import com.example.SpringRestChallenge.model.entities.ProductImages;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +18,6 @@ public class ProductsDtoRes {
   private String productName;
   private Long supplierId;
   private Long categoryId;
-  private String photo;
+  private List<ProductImages> photo;
   private Instant createdDate;
 }

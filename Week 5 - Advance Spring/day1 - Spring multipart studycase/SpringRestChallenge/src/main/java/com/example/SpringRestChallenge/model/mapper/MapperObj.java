@@ -4,8 +4,10 @@ import com.example.SpringRestChallenge.model.dto.CategoriesDto;
 import com.example.SpringRestChallenge.model.dto.ShippersDto;
 import com.example.SpringRestChallenge.model.dto.SupplierDto;
 import com.example.SpringRestChallenge.model.dto.request.ProductsDtoReq;
+import com.example.SpringRestChallenge.model.dto.response.ProductImagesRes;
 import com.example.SpringRestChallenge.model.dto.response.ProductsDtoRes;
 import com.example.SpringRestChallenge.model.entities.Categories;
+import com.example.SpringRestChallenge.model.entities.ProductImages;
 import com.example.SpringRestChallenge.model.entities.Products;
 import com.example.SpringRestChallenge.model.entities.Shippers;
 import com.example.SpringRestChallenge.model.entities.Suppliers;
@@ -28,7 +30,16 @@ public class MapperObj {
                               products.getName(), 
                               products.getSupplier().getId(), 
                               products.getCategory().getId(), 
-                              products.getPhoto(),
+                              products.getImages(),
                               products.getCreatedDate());
+  }
+
+  public static ProductImagesRes mapToProductImagesRes(ProductImages image) {
+    return new ProductImagesRes(image.getImageId(),
+                                image.getFileName(), 
+                                image.getFileSize(), 
+                                image.getFileType(),
+                                image.getFileUri(),
+                                image.getProducts().getId());
   }
 }

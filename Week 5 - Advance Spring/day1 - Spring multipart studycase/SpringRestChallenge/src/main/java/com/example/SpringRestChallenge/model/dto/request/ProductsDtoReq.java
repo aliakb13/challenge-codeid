@@ -20,6 +20,4 @@ public class ProductsDtoReq {
   private Long categoryId;
 
   private Double unitPrice;
-
-  private String photo;
 }
